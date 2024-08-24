@@ -1,12 +1,13 @@
 {
   "compilerOptions": { // https://docs.deno.com/runtime/manual/advanced/typescript/configuration/
-    "jsx": "react-jsx" // use "react-jsx" or "react-jsxdev" for React@^17. "pre
+    "jsx": "react-jsx", // use "react-jsx" or "react-jsxdev" for React@^17.
+    "types": ["./types/index.d.ts"]
   },
   "fmt": { // `deno fmt`: https://docs.deno.com/runtime/manual/tools/formatter/
     "indentWidth": 2,
     "lineWidth": 100,
     "semiColons": true,
-    "singleQuote": false,
+    "singleQuote": true,
     "useTabs": false,
     "exclude": [
       "node_modules/"
