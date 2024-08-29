@@ -21,7 +21,7 @@ export function operate(op: Operator, lhs: Operand, rhs: Operand): Operand {
     case '^':
       return lhs ** rhs;
     default:
-      throw new Error(`Unknown operator: ${op}`);
+      throw new Error(`Unknown operator: '${op}'`);
   }
 }
 
