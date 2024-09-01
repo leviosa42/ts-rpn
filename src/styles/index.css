@@ -155,7 +155,7 @@
     padding: 0.5rem;
 
     button {
-      padding: 1rem;
+      padding: 1rem 0.5rem;
       font-size: 1rem;
       background-color: var(--ion-color-dark-shade);
       color: var(--ion-color-dark-contrast);
@@ -179,10 +179,11 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
+
     padding: 0.5rem;
 
     button {
-      padding: 1rem;
+      padding: 1rem 0.5rem;
       font-size: 1.5rem;
       background-color: var(--ion-color-dark-shade);
       color: var(--ion-color-dark-contrast);
