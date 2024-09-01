@@ -1,14 +1,15 @@
-import { evaluate } from './core.ts';
+import * as rpn from './core/index.ts';
+
 import { parseArgs } from 'https://deno.land/std/cli/parse_args.ts';
 
 const { _: args, ...flags } = parseArgs(Deno.args, {
   alias: {
-    debug: 'd',
     help: 'h',
     expression: 'e',
+    verbose: 'v',
   },
   boolean: [
-    'debug',
+    'verbose',
     'help',
     'expression',
   ],
@@ -19,34 +20,22 @@ if (flags.help) {
 
 Options:
   -h, --help        Show this message
-  -d, --debug       Show debug information
-  -e, --expression  Evaluate the given expression
-  -f, --file        Evaluate the expression from the given file`;
+  -v, --verbose     Show verbose output
+  -e, --expression  Evaluate the given expression`;
   console.log(message);
   Deno.exit(0);
 }
 
-const evaluateOptions = { debug: flags.debug };
-
 if (flags.expression) {
-  if (args.length === 0) {
-    console.error('ERR: Missing expression');
-    Deno.exit(1);
+  const scanned = rpn.scan(args.join(' '));
+  const queue = rpn.tokenize(scanned);
+  const stack = rpn.interpret(queue);
+  if (flags.verbose) {
+    console.log('Scanned:', scanned);
+    console.log('Queue:', queue);
+    console.log('Stack:', stack);
+  } else {
+    console.log(stack[0].value);
   }
-  try {
-    console.log(evaluate(args.join(' '), evaluateOptions));
-    Deno.exit(0);
-  } catch (e) {
-    console.error('ERR:', e.message);
-    Deno.exit(1);
-  }
-}
-
-if (flags.file) {
-  if (args.length === 0) {
-    console.error('ERR: Missing file path');
-    Deno.exit(1);
-  }
-  console.error('ERR: WIP');
-  Deno.exit(1);
+  Deno.exit(0);
 }
