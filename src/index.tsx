@@ -167,9 +167,9 @@ const Keypad = ({
               onClick={key.onClick}
               className={`key ${className}`}
             >
-              <div className='shift'>{'\u00a0'}</div>
+              <div className='shift'>{key.label}</div>
               {key.label}
-              <div className='alpha'>{'\u00a0'}</div>
+              <div className='alpha'>{key.label}</div>
             </button>
           );
         })}
