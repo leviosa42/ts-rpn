@@ -4,7 +4,6 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 0.8rem;
 
   .basic {
@@ -22,6 +21,7 @@
   }
 
   .key {
+    padding: 0.2rem;
     font-size: 1.2rem;
     line-height: 1.2rem;
     background-color: var(--ion-color-dark-shade);
@@ -39,6 +39,7 @@
 
     .shift,
     .alpha {
+      line-height: 0.8rem;
       width: 100%;
       font-size: 0.8rem;
     }
