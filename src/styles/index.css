@@ -6,19 +6,19 @@
   --ion-color-primary-shade: #d8721c;
   --ion-color-primary-tint: #f68f36;
 
-  --ion-color-secondary: #c26619;
-  --ion-color-secondary-rgb: 194, 102, 25;
+  --ion-color-secondary: #66cdaa;
+  --ion-color-secondary-rgb: 102, 205, 170;
   --ion-color-secondary-contrast: #000000;
   --ion-color-secondary-contrast-rgb: 0, 0, 0;
-  --ion-color-secondary-shade: #ab5a16;
-  --ion-color-secondary-tint: #c87530;
+  --ion-color-secondary-shade: #5ab496;
+  --ion-color-secondary-tint: #75d2b3;
 
-  --ion-color-tertiary: #753d0f;
-  --ion-color-tertiary-rgb: 117, 61, 15;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #67360d;
-  --ion-color-tertiary-tint: #835027;
+  --ion-color-tertiary: #db7093;
+  --ion-color-tertiary-rgb: 219, 112, 147;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #c16381;
+  --ion-color-tertiary-tint: #df7e9e;
 
   --ion-color-success: #2dd55b;
   --ion-color-success-rgb: 45, 213, 91;
@@ -41,12 +41,12 @@
   --ion-color-danger-shade: #ad000d;
   --ion-color-danger-tint: #cb1a27;
 
-  --ion-color-light: #f5f5f5;
-  --ion-color-light-rgb: 245, 245, 245;
+  --ion-color-light: #f6f8fc;
+  --ion-color-light-rgb: 246, 248, 252;
   --ion-color-light-contrast: #000000;
   --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #d8d8d8;
-  --ion-color-light-tint: #f6f6f6;
+  --ion-color-light-shade: #d8dade;
+  --ion-color-light-tint: #f7f9fc;
 
   --ion-color-medium: #5f5f5f;
   --ion-color-medium-rgb: 95, 95, 95;
@@ -221,6 +221,17 @@
       border: none;
       border-radius: 0.4rem;
       cursor: pointer;
+
+      &.enter {
+        &:hover {
+          background-color: rgba(var(--ion-color-primary-rgb), 0.5);
+        }
+
+        &:active {
+          background-color: var(--ion-color-primary-tint);
+          color: var(--ion-color-primary-contrast);
+        }
+      }
 
       &.enter {
         border: 2px solid var(--ion-color-secondary);
