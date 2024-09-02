@@ -134,36 +134,42 @@ const Keypad = ({
   ];
   return (
     <div className='keypad'>
-      <div className='extended'>
+      <div className='extend'>
         {KEYS_EXTENDED.map((key) => {
           return (
             <button
               key={key.label}
+              className='key'
               onClick={key.onClick}
             >
+              <div className='shift'>{'\u00a0'}</div>
               {key.label}
+              <div className='alpha'>{'\u00a0'}</div>
             </button>
           );
         })}
       </div>
+
       <div className='basic'>
         {KEYS_NUMERIC.map((key) => {
           const className = key.label === ' '
             ? 'spacer'
             : key.label === 'ENT'
-            ? 'enter'
+            ? 'primary'
             : key.label === 'DEL'
-            ? 'delete'
+            ? 'warning'
             : key.label === 'AC'
-            ? 'clear'
+            ? 'danger'
             : '';
           return (
             <button
               key={key.label}
               onClick={key.onClick}
-              className={className}
+              className={`key ${className}`}
             >
+              <div className='shift'>{'\u00a0'}</div>
               {key.label}
+              <div className='alpha'>{'\u00a0'}</div>
             </button>
           );
         })}
@@ -207,7 +213,7 @@ const App = () => {
         message={message}
         setMessage={setMessage}
       />
-      <Spacer />
+      {/* <Spacer /> */}
       <Keypad
         expression={expression}
         setExpression={setExpression}
