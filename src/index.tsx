@@ -81,6 +81,46 @@ const Keypad = ({
   stack: rpn.Stack;
   setStack: (stack: rpn.Stack) => void;
 }) => {
+  const [shift, setShift] = useState<'INACTIVE' | 'ACTIVE' | 'LOCKED'>('INACTIVE');
+  const [alpha, setAlpha] = useState<'INACTIVE' | 'ACTIVE' | 'LOCKED'>('INACTIVE');
+
+  /*
+    SYSTEM KEYPAD
+    SHIFT ALPHA MENU SETUP
+    */
+  const KEYS_SYSTEM = [
+    {
+      label: 'SHIFT',
+      onClick: () =>
+        setShift((shift) => {
+          switch (shift) {
+            case 'INACTIVE':
+              return 'ACTIVE';
+            case 'ACTIVE':
+              return 'LOCKED';
+            case 'LOCKED':
+              return 'INACTIVE';
+          }
+        }),
+    },
+    {
+      label: 'ALPHA',
+      onClick: () =>
+        setAlpha((alpha) => {
+          switch (alpha) {
+            case 'INACTIVE':
+              return 'ACTIVE';
+            case 'ACTIVE':
+              return 'LOCKED';
+            case 'LOCKED':
+              return 'INACTIVE';
+          }
+        }),
+    },
+    { label: 'MENU', onClick: () => {} },
+    { label: 'SETUP', onClick: () => {} },
+  ];
+
   /* EXTENDED KEYPAD
     _   _  sqrt min max
     g   _  log2 log10 ln
@@ -134,6 +174,50 @@ const Keypad = ({
   ];
   return (
     <div className='keypad'>
+      <div className='system'>
+        {KEYS_SYSTEM.map((key) => {
+          const className = ((label: string) => {
+            let className = '';
+            if (label === 'SHIFT') {
+              className += ' secondary';
+              switch (shift) {
+                case 'INACTIVE':
+                  className += ' inactive';
+                  break;
+                case 'ACTIVE':
+                  className += ' active';
+                  break;
+                case 'LOCKED':
+                  className += ' locked';
+                  break;
+              }
+            } else if (label === 'ALPHA') {
+              className += 'tertiary';
+              switch (alpha) {
+                case 'INACTIVE':
+                  className += ' inactive';
+                  break;
+                case 'ACTIVE':
+                  className += ' active';
+                  break;
+                case 'LOCKED':
+                  className += ' locked';
+                  break;
+              }
+            }
+            return className;
+          })(key.label);
+          return (
+            <button
+              key={key.label}
+              className={`key ${className}`}
+              onClick={key.onClick}
+            >
+              {key.label}
+            </button>
+          );
+        })}
+      </div>
       <div className='extend'>
         {KEYS_EXTENDED.map((key) => {
           return (
