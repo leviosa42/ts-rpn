@@ -35,17 +35,19 @@ export const BASIC: KeyConfig[] = [
 export const SYSTEM: KeyConfig[] = [
   buildKey({ normal: { label: 'SHIFT', action: { type: 'modifier', payload: 'shift' } }, color: 'secondary' }),
   buildKey({ normal: { label: 'ALPHA', action: { type: 'modifier', payload: 'alpha' } }, color: 'tertiary' }),
-  buildKey({ normal: { label: 'menu', action: { type: 'noop', payload: null } }, color: 'normal' }),
-  buildKey({ normal: { label: 'mode', action: { type: 'noop', payload: null } }, color: 'normal' }),
+  buildKey({ normal: { label: 'MENU', action: { type: 'noop', payload: null } }, color: 'normal', enabled: false }),
+  buildKey({ normal: { label: 'MODE', action: { type: 'noop', payload: null } }, color: 'normal', enabled: false }),
 ] as const;
 
 export const EXTENDED: KeyConfig[] = [
   //
   buildKey({
     normal: { label: 'CNST', action: { type: 'noop', payload: null } },
+    enabled: false,
   }),
   buildKey({
     normal: { label: 'FUNC', action: { type: 'noop', payload: null } },
+    enabled: false,
   }),
   buildKey({
     normal: { label: 'sin', action: { type: 'insert', payload: 'sin' } },

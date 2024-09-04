@@ -32,15 +32,7 @@ const Screen: React.FC<{ state: State }> = ({ state }) => {
         <input
           type='text'
           className='tokens'
-          value={`[ ${
-            ((expr) => {
-              try {
-                return rpn.parse(expr).map((t) => t.data).join(' ');
-              } catch (e) {
-                return e.message;
-              }
-            })(state.expression)
-          } ]`}
+          value={state.result}
           readOnly
         />
         <div className='message'>
@@ -75,7 +67,7 @@ export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
       if (s.length === 0) {
         return { ...state, expression, result: '', message: '' };
       }
-      return { ...state, expression, result: s.map((t) => t.value).join(' '), message: s[0].value.toString() };
+      return { ...state, expression, result: `[ ${s.map((t) => t.value).join(' ')} ]`, message: s[0].value.toString() };
     } catch (e) {
       return { ...state, expression, message: `ERR: ${e.message}` };
     }

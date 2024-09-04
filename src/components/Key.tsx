@@ -4,6 +4,7 @@ import { FC } from 'react';
 export type KeyAction = {
   type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'mode';
   payload: string | number | null;
+  enabled?: boolean;
 };
 
 export type KeyConfig = {
@@ -11,6 +12,7 @@ export type KeyConfig = {
   shift: { label: string; action: KeyAction } | null;
   alpha: { label: string; action: KeyAction } | null;
   color: 'normal' | 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning';
+  enabled: boolean;
 };
 
 export type Props = {
@@ -20,11 +22,12 @@ export type Props = {
 };
 
 export const Key: FC<Props> = ({ keyConfig, dispatch, modifiers }) => {
+  const classes = ['key', keyConfig.color, keyConfig.enabled ? '' : 'disabled'];
   // shift and alpha are mutually exclusive
   if (keyConfig.normal.label === 'SHIFT') {
     return (
       <button
-        className={`key ${keyConfig.color} ${modifiers.shift}`}
+        className={`${modifiers.shift} ${classes.join(' ')}`}
         onClick={() => dispatch(keyConfig.normal.action)}
       >
         {keyConfig.normal.label}
@@ -34,7 +37,7 @@ export const Key: FC<Props> = ({ keyConfig, dispatch, modifiers }) => {
   if (keyConfig.normal.label === 'ALPHA') {
     return (
       <button
-        className={`key ${keyConfig.color} ${modifiers.alpha}`}
+        className={`${modifiers.alpha} ${classes.join(' ')}`}
         onClick={() => dispatch(keyConfig.normal.action)}
       >
         {keyConfig.normal.label}
@@ -52,8 +55,8 @@ export const Key: FC<Props> = ({ keyConfig, dispatch, modifiers }) => {
   })(modifiers);
   return (
     <button
-      className={`key ${keyConfig.color}`}
-      onClick={() => dispatch(action)}
+      className={classes.join(' ')}
+      onClick={keyConfig.enabled ? () => dispatch(action) : undefined}
     >
       <div className='shift'>{keyConfig.shift?.label ?? '\u00a0'}</div>
       {keyConfig.normal.label}
@@ -68,6 +71,7 @@ export function buildKey(key: Partial<KeyConfig>): KeyConfig {
     shift: null,
     alpha: null,
     color: 'normal',
+    enabled: true,
     ...key,
   };
 }
