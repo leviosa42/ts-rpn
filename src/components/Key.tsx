@@ -1,0 +1,73 @@
+// @ts-types="@types/react"
+import { FC } from 'react';
+
+export type KeyAction = {
+  type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'mode';
+  payload: string | number | null;
+};
+
+export type KeyConfig = {
+  normal: { label: string; action: KeyAction };
+  shift: { label: string; action: KeyAction } | null;
+  alpha: { label: string; action: KeyAction } | null;
+  color: 'normal' | 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning';
+};
+
+export type Props = {
+  keyConfig: KeyConfig;
+  dispatch: (action: KeyAction) => void;
+  modifiers: { shift: 'inactive' | 'active' | 'locked'; alpha: 'inactive' | 'active' | 'locked' };
+};
+
+export const Key: FC<Props> = ({ keyConfig, dispatch, modifiers }) => {
+  // shift and alpha are mutually exclusive
+  if (keyConfig.normal.label === 'SHIFT') {
+    return (
+      <button
+        className={`key ${keyConfig.color} ${modifiers.shift}`}
+        onClick={() => dispatch(keyConfig.normal.action)}
+      >
+        {keyConfig.normal.label}
+      </button>
+    );
+  }
+  if (keyConfig.normal.label === 'ALPHA') {
+    return (
+      <button
+        className={`key ${keyConfig.color} ${modifiers.alpha}`}
+        onClick={() => dispatch(keyConfig.normal.action)}
+      >
+        {keyConfig.normal.label}
+      </button>
+    );
+  }
+  const action = (({ shift, alpha }) => {
+    if (keyConfig.shift && (shift === 'active' || shift === 'locked')) {
+      return keyConfig.shift.action;
+    }
+    if (keyConfig.alpha && (alpha === 'active' || alpha === 'locked')) {
+      return keyConfig.alpha.action;
+    }
+    return keyConfig.normal.action;
+  })(modifiers);
+  return (
+    <button
+      className={`key ${keyConfig.color}`}
+      onClick={() => dispatch(action)}
+    >
+      <div className='shift'>{keyConfig.shift?.label ?? '\u00a0'}</div>
+      {keyConfig.normal.label}
+      <div className='alpha'>{keyConfig.alpha?.label ?? '\u00a0'}</div>
+    </button>
+  );
+};
+
+export function buildKey(key: Partial<KeyConfig>): KeyConfig {
+  return {
+    normal: { label: '', action: { type: 'noop', payload: null } },
+    shift: null,
+    alpha: null,
+    color: 'normal',
+    ...key,
+  };
+}
