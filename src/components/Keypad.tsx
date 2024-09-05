@@ -1,3 +1,4 @@
+// @ts-types="@types/react"
 import { FC } from 'react';
 
 import { Key, KeyAction, KeyConfig } from './Key.tsx';
@@ -10,27 +11,39 @@ export type Props = {
 };
 
 export const System: FC<Props> = ({ dispatch, state }: Props) => {
-  <div className='system'>
-    {KEYS.SYSTEM.map((kc) => {
-      if (/SHIFT|ALPHA/.test(kc.normal.label)) {
-        return (
-          <Key
-            key={kc.normal.label}
-            keyConfig={kc}
-            dispatch={dispatch}
-            modifiers={state.modifiers}
-          />
-        );
-      }
-      return <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />;
-    })}
-  </div>;
+  return (
+    <div className='system'>
+      {KEYS.SYSTEM.map((kc) => {
+        if (/SHIFT|ALPHA/.test(kc.normal.label)) {
+          return (
+            <Key
+              key={kc.normal.label}
+              keyConfig={kc}
+              dispatch={dispatch}
+              modifiers={state.modifiers}
+            />
+          );
+        }
+        return <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />;
+      })}
+    </div>
+  );
 };
 
 export const Extended: FC<Props> = ({ dispatch, state }: Props) => {
   return (
     <div className='extend'>
       {KEYS.EXTENDED.map((kc) => (
+        <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
+      ))}
+    </div>
+  );
+};
+
+export const Arrow: FC<Props> = ({ dispatch, state }: Props) => {
+  return (
+    <div className='arrow'>
+      {KEYS.ARROW.map((kc) => (
         <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
       ))}
     </div>
@@ -52,6 +65,7 @@ export const Keypad: FC<Props> = ({ dispatch, state }: Props) => {
     <div className='keypad'>
       <System dispatch={dispatch} state={state} />
       <Extended dispatch={dispatch} state={state} />
+      <Arrow dispatch={dispatch} state={state} />
       <Basic dispatch={dispatch} state={state} />
     </div>
   );

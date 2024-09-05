@@ -5,7 +5,7 @@ import { useSound } from 'use-sound';
 const SOUND_ONCLICK = new URL('../../public/keyboard_1.mp3', import.meta.url).href;
 
 export type KeyAction = {
-  type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'mode';
+  type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'mode' | 'cursor.move';
   payload: string | number | null;
   enabled?: boolean;
 };
@@ -14,7 +14,7 @@ export type KeyConfig = {
   normal: { label: string; action: KeyAction };
   shift: { label: string; action: KeyAction } | null;
   alpha: { label: string; action: KeyAction } | null;
-  color: 'normal' | 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning';
+  color: 'normal' | 'primary' | 'secondary' | 'tertiary' | 'danger' | 'warning' | 'invert';
   enabled: boolean;
 };
 

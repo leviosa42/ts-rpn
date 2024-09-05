@@ -66,3 +66,8 @@ export const EXTENDED: KeyConfig[] = [
   }),
   //
 ] as const;
+
+export const ARROW: KeyConfig[] = [
+  buildKey({ normal: { label: '←', action: { type: 'cursor.move', payload: -1 } }, color: 'invert' }),
+  buildKey({ normal: { label: '→', action: { type: 'cursor.move', payload: 1 } }, color: 'invert' }),
+] as const;

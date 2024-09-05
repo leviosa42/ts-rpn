@@ -20,6 +20,7 @@ export type State = {
     alpha: 'inactive' | 'active' | 'locked';
   };
   message: string;
+  cursorPosition: number;
 };
 
 export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
@@ -45,14 +46,24 @@ export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
   }
 
   switch (action.type) {
-    case 'insert':
-      return updateByExpression(state.expression + action.payload);
+    case 'insert': {
+      if (typeof action.payload !== 'string') {
+        console.error('Invalid payload', action.payload);
+        throw new Error('Invalid payload');
+      }
+      const updated = updateByExpression(
+        state.expression.slice(0, state.cursorPosition) + action.payload + state.expression.slice(state.cursorPosition),
+      );
+      return reducer(updated, { type: 'cursor.move', payload: action.payload.length });
+    }
     case 'delete':
-      return updateByExpression(state.expression.slice(0, -1));
+      return updateByExpression(
+        state.expression.slice(0, state.cursorPosition - 1) + state.expression.slice(state.cursorPosition),
+      );
     case 'clear':
       return updateByExpression('');
     case 'enter':
-      return updateByExpression(state.expression + ' ');
+      return reducer(updateByExpression(state.expression + ' '), { type: 'cursor.move', payload: 1 });
     case 'modifier': {
       const toggle = (state: 'inactive' | 'active' | 'locked') => {
         switch (state) {
@@ -74,6 +85,15 @@ export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
         },
       };
     }
+    case 'cursor.move': {
+      if (typeof action.payload === 'number') {
+        const cursorPosition = Math.max(0, Math.min(state.expression.length, state.cursorPosition + action.payload));
+        return { ...state, cursorPosition };
+      } else {
+        console.error('Invalid payload', action.payload);
+        throw new Error();
+      }
+    }
     case 'noop':
       return state;
     default:
@@ -88,6 +108,7 @@ const App = () => {
     result: '',
     modifiers: { shift: 'inactive', alpha: 'inactive' },
     message: '',
+    cursorPosition: 0,
   });
 
   return (

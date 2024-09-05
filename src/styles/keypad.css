@@ -7,9 +7,16 @@
   gap: 0.8rem;
 
   .basic {
-    flex-grow: 1;
+    flex-grow: 2;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    gap: 0.2rem;
+  }
+
+  .arrow {
+    flex-grow: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.2rem;
   }
 
@@ -68,6 +75,11 @@
     &:active {
       /* border-style: inset; */
       transform: translateY(4px);
+    }
+
+    &.invert {
+      background-color: var(--ion-color-light);
+        color: var(--ion-color-light-contrast);
     }
 
     &.active {
@@ -184,5 +196,4 @@
     }
 
   }
-
 }
