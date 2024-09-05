@@ -9,7 +9,7 @@ import './styles/index.css';
 import { KeyAction } from './components/Key.tsx';
 import { Keypad } from './components/Keypad.tsx';
 
-const Screen: React.FC<{ state: State }> = ({ state }) => {
+const Screen: React.FC<{ state: State; dispatch: React.Dispatch<KeyAction> }> = ({ state, dispatch }) => {
   return (
     <div className='screen'>
       <div className='input'>
@@ -23,8 +23,11 @@ const Screen: React.FC<{ state: State }> = ({ state }) => {
             className='tokens'
             placeholder='式を入力'
             value={state.expression}
+            onChange={(e) => {
+              dispatch({ type: 'clear', payload: null });
+              dispatch({ type: 'insert', payload: e.target.value });
+            }}
             autoFocus
-            readOnly
           />
         </form>
       </div>
@@ -130,7 +133,7 @@ const App = () => {
 
   return (
     <div className='app'>
-      <Screen state={state} />
+      <Screen state={state} dispatch={dispatch} />
       <Keypad state={state} dispatch={dispatch} />
     </div>
   );
