@@ -9,34 +9,50 @@ export type Props = {
   state: State;
 };
 
+export const System: FC<Props> = ({ dispatch, state }: Props) => {
+  <div className='system'>
+    {KEYS.SYSTEM.map((kc) => {
+      if (/SHIFT|ALPHA/.test(kc.normal.label)) {
+        return (
+          <Key
+            key={kc.normal.label}
+            keyConfig={kc}
+            dispatch={dispatch}
+            modifiers={state.modifiers}
+          />
+        );
+      }
+      return <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />;
+    })}
+  </div>;
+};
+
+export const Extended: FC<Props> = ({ dispatch, state }: Props) => {
+  return (
+    <div className='extend'>
+      {KEYS.EXTENDED.map((kc) => (
+        <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
+      ))}
+    </div>
+  );
+};
+
+export const Basic: FC<Props> = ({ dispatch, state }: Props) => {
+  return (
+    <div className='basic'>
+      {KEYS.BASIC.map((kc) => (
+        <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
+      ))}
+    </div>
+  );
+};
+
 export const Keypad: FC<Props> = ({ dispatch, state }: Props) => {
   return (
     <div className='keypad'>
-      <div className='system'>
-        {KEYS.SYSTEM.map((kc) => {
-          if (/SHIFT|ALPHA/.test(kc.normal.label)) {
-            return (
-              <Key
-                key={kc.normal.label}
-                keyConfig={kc}
-                dispatch={dispatch}
-                modifiers={state.modifiers}
-              />
-            );
-          }
-          return <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />;
-        })}
-      </div>
-      <div className='extend'>
-        {KEYS.EXTENDED.map((kc) => (
-          <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
-        ))}
-      </div>
-      <div className='basic'>
-        {KEYS.BASIC.map((kc) => (
-          <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
-        ))}
-      </div>
+      <System dispatch={dispatch} state={state} />
+      <Extended dispatch={dispatch} state={state} />
+      <Basic dispatch={dispatch} state={state} />
     </div>
   );
 };
