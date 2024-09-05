@@ -7,6 +7,7 @@
       "npm:@vitejs/plugin-react@^4.3.1": "npm:@vitejs/plugin-react@4.3.1_vite@5.4.2_@babel+core@7.25.2",
       "npm:react-dom@^18.3.1": "npm:react-dom@18.3.1_react@18.3.1",
       "npm:react@^18.3.1": "npm:react@18.3.1",
+      "npm:use-sound@^4.0.3": "npm:use-sound@4.0.3_react@18.3.1",
       "npm:vite": "npm:vite@5.4.2",
       "npm:vite@^5.4.2": "npm:vite@5.4.2"
     },
@@ -523,6 +524,10 @@
         "integrity": "sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==",
         "dependencies": {}
       },
+      "howler@2.2.4": {
+        "integrity": "sha512-iARIBPgcQrwtEr+tALF+rapJ8qSc+Set2GJQl7xT1MQzWaVkFebdJhR3alVlSiUf5U7nAANKuj3aWpwerocD5w==",
+        "dependencies": {}
+      },
       "js-tokens@4.0.0": {
         "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
         "dependencies": {}
@@ -644,6 +649,13 @@
           "picocolors": "picocolors@1.0.1"
         }
       },
+      "use-sound@4.0.3_react@18.3.1": {
+        "integrity": "sha512-L205pEUFIrLsGYsCUKHQVCt0ajs//YQOFbEQeNwaWaqQj3y3st4SuR+rvpMHLmv8hgTcfUFlvMQawZNI3OE18w==",
+        "dependencies": {
+          "howler": "howler@2.2.4",
+          "react": "react@18.3.1"
+        }
+      },
       "vite@5.4.2": {
         "integrity": "sha512-dDrQTRHp5C1fTFzcSaMxjk6vdpKvT+2/mIdE07Gw2ykehT49O0z/VHS3zZ8iV/Gh8BJJKHWOe5RjaNrW5xf/GA==",
         "dependencies": {
@@ -715,6 +727,7 @@
       "npm:@vitejs/plugin-react@^4.3.1",
       "npm:react-dom@^18.3.1",
       "npm:react@^18.3.1",
+      "npm:use-sound@^4.0.3",
       "npm:vite@^5.4.2"
     ]
   }

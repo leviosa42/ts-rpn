@@ -37,6 +37,7 @@
     "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.3.1",
     "react": "npm:react@^18.3.1",
     "react-dom": "npm:react-dom@^18.3.1",
+    "use-sound": "npm:use-sound@^4.0.3",
     "vite": "npm:vite@^5.4.2"
   }
 }

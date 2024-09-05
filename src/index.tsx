@@ -27,7 +27,7 @@ const Screen: React.FC<{ state: State; dispatch: React.Dispatch<KeyAction> }> = 
               dispatch({ type: 'clear', payload: null });
               dispatch({ type: 'insert', payload: e.target.value });
             }}
-            autoFocus
+            // autoFocus
           />
         </form>
       </div>
