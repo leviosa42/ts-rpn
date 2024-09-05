@@ -56,10 +56,15 @@ export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
       );
       return reducer(updated, { type: 'cursor.move', payload: action.payload.length });
     }
-    case 'delete':
-      return updateByExpression(
+    case 'delete': {
+      if (state.cursorPosition === 0) {
+        return state;
+      }
+      const updated = updateByExpression(
         state.expression.slice(0, state.cursorPosition - 1) + state.expression.slice(state.cursorPosition),
       );
+      return reducer(updated, { type: 'cursor.move', payload: -1 });
+    }
     case 'clear':
       return updateByExpression('');
     case 'enter':
