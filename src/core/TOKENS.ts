@@ -139,6 +139,96 @@ export const FUNCTIONS: Record<string, Omit<Operator, 'data'>> = {
       } as Operand;
     },
   },
+  'asin': {
+    type: 'operator',
+    category: 'function',
+    name: 'arcsine',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.asin(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
+  'acos': {
+    type: 'operator',
+    category: 'function',
+    name: 'arccosine',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.acos(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
+  'atan': {
+    type: 'operator',
+    category: 'function',
+    name: 'arctangent',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.atan(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
+  'sinh': {
+    type: 'operator',
+    category: 'function',
+    name: 'hyperbolic sine',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.sinh(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
+  'cosh': {
+    type: 'operator',
+    category: 'function',
+    name: 'hyperbolic cosine',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.cosh(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
+  'tanh': {
+    type: 'operator',
+    category: 'function',
+    name: 'hyperbolic tangent',
+    arity: 1,
+    execute: (operand: Operand) => {
+      const result = Math.tanh(operand.value);
+      return {
+        type: 'operand',
+        category: 'number',
+        data: result.toString(),
+        value: result,
+      } as Operand;
+    },
+  },
   'sqrt': {
     type: 'operator',
     category: 'function',

@@ -1,3 +1,4 @@
+import { RPNError } from './error.ts';
 import { Operand, Queue, Stack } from './types.d.ts';
 
 export function interpret(
@@ -16,7 +17,14 @@ export function interpret(
         for (let i = 0; i < token.arity; i++) {
           const arg = stack.pop();
           if (arg === undefined) {
-            throw new Error('Not enough operands');
+            throw new RPNError(
+              `Not enough arguments for operator ${token.data} that requires ${token.arity} arguments`,
+              {
+                token,
+                queue,
+                stack,
+              },
+            );
           }
           args.push(arg);
         }
@@ -25,9 +33,9 @@ export function interpret(
         break;
       }
       case 'unknown':
-        throw new Error(`Unknown token: ${token.data}`);
+        throw new RPNError(`Unknown token: ${token.data}`, { token });
       default: {
-        throw new Error(`Invalid token: ${token}`);
+        throw new RPNError(`Invalid token`, { token });
       }
     }
   }
