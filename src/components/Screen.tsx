@@ -14,7 +14,11 @@ export const Screen: React.FC<{ state: State; dispatch: React.Dispatch<KeyAction
             type='text'
             className='tokens'
             placeholder='式を入力'
-            value={state.expression}
+            value={((expr, cpos) => {
+              const CURSOR_CHAR = '¦'; // U+00A6, BROKEN BAR
+              // const CURSOR_CHAR = '∣'; // U+2223, DIVIDES
+              return expr.slice(0, cpos) + CURSOR_CHAR + expr.slice(cpos);
+            })(state.expression, state.cursorPosition)}
             onChange={(e) => {
               dispatch({ type: 'clear', payload: null });
               dispatch({ type: 'insert', payload: e.target.value });
