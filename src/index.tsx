@@ -21,6 +21,7 @@ export type State = {
   };
   message: string;
   cursorPosition: number;
+  keypad_mode: 'normal' | 'constant' | 'function';
 };
 
 export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
@@ -99,6 +100,17 @@ export const reducer: React.Reducer<State, KeyAction> = (state, action) => {
         throw new Error();
       }
     }
+    case 'keypad_mode': {
+      // 現在と同じkeypad_modeの場合はnormalに戻す
+      if (state.keypad_mode === action.payload) {
+        return { ...state, keypad_mode: 'normal' };
+      } else if (action.payload === 'constant' || action.payload === 'function') {
+        return { ...state, keypad_mode: action.payload };
+      } else {
+        console.error('Invalid payload', action.payload);
+        throw new Error();
+      }
+    }
     case 'noop':
       return state;
     default:
@@ -114,6 +126,7 @@ const App = () => {
     modifiers: { shift: 'inactive', alpha: 'inactive' },
     message: '',
     cursorPosition: 0,
+    keypad_mode: 'normal',
   });
 
   return (

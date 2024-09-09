@@ -5,7 +5,7 @@ import { useSound } from 'use-sound';
 const SOUND_ONCLICK = new URL('../../public/keyboard_1.mp3', import.meta.url).href;
 
 export type KeyAction = {
-  type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'mode' | 'cursor.move';
+  type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'keypad_mode' | 'cursor.move';
   payload: string | number | null;
   enabled?: boolean;
 };

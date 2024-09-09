@@ -2,8 +2,12 @@
 
 .keypad {
 
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr 1fr 4fr;
+  overflow: hidden;
   gap: 0.8rem;
 
   .basic {
@@ -32,6 +36,21 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.2rem;
+  }
+
+  .constant, .function {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.2rem;
+
+    overflow-y: scroll;
+
+    .key {
+      align-items: flex-start;
+      padding-left: 0.4rem;
+    }
   }
 
   .key {
@@ -80,7 +99,7 @@
     &.invert {
       background-color: var(--ion-color-light);
       color: var(--ion-color-light-contrast);
-      
+
       .shift {
         color: color-mix(in srgb,
             var(--ion-color-secondary) 60%,
@@ -151,20 +170,20 @@
       background-color: var(--ion-color-tertiary);
       color: var(--ion-color-tertiary-contrast);
 
-        &.inactive {
-          background-color: var(--ion-color-dark-shade);
-          color: var(--ion-color-tertiary-contrast);
-        }
+      &.inactive {
+        background-color: var(--ion-color-dark-shade);
+        color: var(--ion-color-tertiary-contrast);
+      }
 
-        &.active {
-          background-color: var(--ion-color-dark-shade);
-          color: var(--ion-color-tertiary);
-        }
+      &.active {
+        background-color: var(--ion-color-dark-shade);
+        color: var(--ion-color-tertiary);
+      }
 
-        &.locked {
-          background-color: var(--ion-color-tertiary);
-          color: var(--ion-color-tertiary-contrast);
-        }
+      &.locked {
+        background-color: var(--ion-color-tertiary);
+        color: var(--ion-color-tertiary-contrast);
+      }
     }
 
     &.success {
