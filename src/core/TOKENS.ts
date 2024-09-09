@@ -337,4 +337,9 @@ export const CONSTANTS: Record<string, Omit<Operand, 'data'>> = {
     category: 'constant',
     value: 9.81,
   },
+  C_c: {
+    type: 'operand',
+    category: 'constant',
+    value: 299_792_458,
+  },
 };

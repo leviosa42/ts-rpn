@@ -60,13 +60,25 @@ export const Basic: FC<Props> = ({ dispatch, state }: Props) => {
   );
 };
 
+export const Constant: FC<Props> = ({ dispatch, state }: Props) => {
+  return (
+    <div className='constant'>
+      {KEYS.CONSTANTS.map((kc) => (
+        <Key key={kc.normal.label} keyConfig={kc} dispatch={dispatch} modifiers={state.modifiers} />
+      ))}
+    </div>
+  );
+};
+
 export const Keypad: FC<Props> = ({ dispatch, state }: Props) => {
   return (
     <div className='keypad'>
       <System dispatch={dispatch} state={state} />
       <Extended dispatch={dispatch} state={state} />
       <Arrow dispatch={dispatch} state={state} />
-      <Basic dispatch={dispatch} state={state} />
+      {state.keypad_mode === 'normal'
+        ? <Basic dispatch={dispatch} state={state} />
+        : <Constant dispatch={dispatch} state={state} />}
     </div>
   );
 };

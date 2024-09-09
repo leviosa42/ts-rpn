@@ -42,8 +42,8 @@ export const SYSTEM: KeyConfig[] = [
 export const EXTENDED: KeyConfig[] = [
   //
   buildKey({
-    normal: { label: 'CNST', action: { type: 'noop', payload: null } },
-    enabled: false,
+    normal: { label: 'CNST', action: { type: 'keypad_mode', payload: 'constant' } },
+    enabled: true,
   }),
   buildKey({
     normal: { label: 'FUNC', action: { type: 'noop', payload: null } },
@@ -78,4 +78,10 @@ export const ARROW: KeyConfig[] = [
     shift: { label: 'end', action: { type: 'cursor.move', payload: Infinity } },
     color: 'invert',
   }),
+] as const;
+
+export const CONSTANTS: KeyConfig[] = [
+  // physical constants
+  buildKey({ normal: { label: 'c', action: { type: 'insert', payload: 'C_c' } } }),
+  buildKey({ normal: { label: 'g', action: { type: 'insert', payload: 'C_g' } } }),
 ] as const;
