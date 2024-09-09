@@ -46,8 +46,8 @@ export const EXTENDED: KeyConfig[] = [
     enabled: true,
   }),
   buildKey({
-    normal: { label: 'FUNC', action: { type: 'noop', payload: null } },
-    enabled: false,
+    normal: { label: 'FUNC', action: { type: 'keypad_mode', payload: 'function' } },
+    enabled: true,
   }),
   buildKey({
     normal: { label: 'sin', action: { type: 'insert', payload: 'sin' } },
@@ -84,4 +84,27 @@ export const CONSTANTS: KeyConfig[] = [
   // physical constants
   buildKey({ normal: { label: 'c', action: { type: 'insert', payload: 'C_c' } } }),
   buildKey({ normal: { label: 'g', action: { type: 'insert', payload: 'C_g' } } }),
+] as const;
+
+export const FUNCTIONS: KeyConfig[] = [
+  // trigonometric functions
+  buildKey({ normal: { label: 'sin', action: { type: 'insert', payload: 'sin' } } }),
+  buildKey({ normal: { label: 'cos', action: { type: 'insert', payload: 'cos' } } }),
+  buildKey({ normal: { label: 'tan', action: { type: 'insert', payload: 'tan' } } }),
+  buildKey({ normal: { label: 'asin', action: { type: 'insert', payload: 'asin' } } }),
+  buildKey({ normal: { label: 'acos', action: { type: 'insert', payload: 'acos' } } }),
+  buildKey({ normal: { label: 'atan', action: { type: 'insert', payload: 'atan' } } }),
+  buildKey({ normal: { label: 'sinh', action: { type: 'insert', payload: 'sinh' } } }),
+  buildKey({ normal: { label: 'cosh', action: { type: 'insert', payload: 'cosh' } } }),
+  buildKey({ normal: { label: 'tanh', action: { type: 'insert', payload: 'tanh' } } }),
+  // sqrt
+  buildKey({ normal: { label: 'sqrt', action: { type: 'insert', payload: 'sqrt' } } }),
+  // logarithmic functions
+  buildKey({ normal: { label: 'ln', action: { type: 'insert', payload: 'ln' } } }),
+  buildKey({ normal: { label: 'log2', action: { type: 'insert', payload: 'log2' } } }),
+  buildKey({ normal: { label: 'log10', action: { type: 'insert', payload: 'log10' } } }),
+  // min/max
+  buildKey({ normal: { label: 'min', action: { type: 'insert', payload: 'min' } } }),
+  buildKey({ normal: { label: 'max', action: { type: 'insert', payload: 'max' } } }),
+  // exponential functions
 ] as const;

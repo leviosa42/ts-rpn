@@ -38,7 +38,7 @@
     gap: 0.2rem;
   }
 
-  .constant {
+  .constant, .function {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
