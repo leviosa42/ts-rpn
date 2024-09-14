@@ -3,10 +3,21 @@
 
 .screen {
 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .verbose {
+    overflow: scroll;
+    flex-shrink: 2;
+    font-size: 0.8rem;
+  }
+
   .input,
   .result {
     /* padding: 0.4rem; */
 
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,6 +54,7 @@
       color: var(--ion-color-dark-contrast);
       border: none;
       text-align: left;
+      overflow-x: scroll;
 
       &.error {
         color: var(--ion-color-danger);
