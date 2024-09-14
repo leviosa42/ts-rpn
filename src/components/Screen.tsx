@@ -1,5 +1,42 @@
+// @ts-types="@types/react"
+import { FC } from 'react';
 import type { State } from '../index.tsx';
-import type { KeyAction } from './Key.tsx';
+import type { KeyAction, Props } from './Key.tsx';
+import * as rpn from '../core/index.ts';
+
+export const Verbose = ({ dispatch, state }: {
+  dispatch: (action: KeyAction) => void;
+  state: State;
+}) => {
+  try {
+    const expr = state.expression;
+    const queue = rpn.parse(expr);
+    const stack = rpn.interpret(queue);
+    return (
+      <div className='verbose'>
+        <code>
+          <pre>Expression:</pre>
+          <pre>{expr}</pre>
+
+          <pre>Queue:</pre>
+          <pre>{JSON.stringify(queue, null, 2)}</pre>
+
+          <pre>Stack:</pre>
+          <pre>{JSON.stringify(stack, null, 2)}</pre>
+        </code>
+      </div>
+    );
+  } catch (e) {
+    console.error(e);
+    return (
+      <div className='verbose'>
+        <code>
+          <pre>{e.message}</pre>
+        </code>
+      </div>
+    );
+  }
+};
 
 export const Screen: React.FC<{ state: State; dispatch: React.Dispatch<KeyAction> }> = ({ state, dispatch }) => {
   return (
@@ -43,6 +80,7 @@ export const Screen: React.FC<{ state: State; dispatch: React.Dispatch<KeyAction
           />
         </div>
       </div>
+      <Verbose dispatch={dispatch} state={state} />
     </div>
   );
 };
