@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useSound } from 'use-sound';
 
-const SOUND_ONCLICK = new URL('../../public/keyboard_1.mp3', import.meta.url).href;
+const SOUND_ONCLICK = new URL('../public/keyboard_1.mp3', import.meta.url).href;
 
 export type KeyAction = {
   type: 'insert' | 'delete' | 'clear' | 'enter' | 'modifier' | 'noop' | 'keypad_mode' | 'cursor.move';

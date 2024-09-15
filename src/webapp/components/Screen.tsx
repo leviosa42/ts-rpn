@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import type { State } from '../index.tsx';
 import type { KeyAction, Props } from './Key.tsx';
-import * as rpn from '../core/index.ts';
+import * as rpn from '../../core/mod.ts';
 
 export const Verbose = ({ dispatch, state }: {
   dispatch: (action: KeyAction) => void;

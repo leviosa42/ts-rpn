@@ -3,7 +3,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 // @ts-types="@types/react-dom/client"
 import { createRoot } from 'react-dom/client';
 
-import * as rpn from './core/index.ts';
+import * as rpn from '../core/mod.ts';
 
 import './styles/index.css';
 import { KeyAction } from './components/Key.tsx';
