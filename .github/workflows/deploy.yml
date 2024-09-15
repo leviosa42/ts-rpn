@@ -26,6 +26,9 @@ jobs:
       - name: Build step
         run: "deno task build"
 
+      - name: Generate docs
+        run: "deno doc --output=dist/docs --html src/*/*.{ts,tsx}"
+
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
