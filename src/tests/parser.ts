@@ -1,4 +1,4 @@
-import type { Operand } from '../types/index.d.ts';
+import type { Operand } from '../core/types.d.ts'
 
 // lexical.test.ts
 import * as lexical from '../core/parser.ts';
