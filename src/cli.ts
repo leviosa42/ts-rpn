@@ -1,4 +1,4 @@
-import * as rpn from './core/index.ts';
+import * as rpn from './core/mod.ts';
 
 import { parseArgs } from 'https://deno.land/std/cli/parse_args.ts';
 
