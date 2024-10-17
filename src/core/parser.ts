@@ -8,7 +8,7 @@ export function scan(expression: string): string[] {
 
 export function tokenize(scanned: string[]): Token[] {
   return scanned.map((e: string) => {
-    if (/^\d*\.?\d$/.test(e)) {
+    if (/^\d*\.?\d*$/.test(e)) {
       // operand.number
       // ex. 123, 3.14, .5, 2.
       return {
