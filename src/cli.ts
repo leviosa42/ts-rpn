@@ -15,7 +15,7 @@ const { _: args, ...flags } = parseArgs(Deno.args, {
   ],
 });
 
-if (flags.help) {
+if (flags.help || Deno.args.length === 0) {
   const message = String.raw`Usage: deno run src/cli.ts [options] [<arguments>]
 
 Options:
