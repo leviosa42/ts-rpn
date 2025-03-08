@@ -32,7 +32,7 @@
     "cli": "deno run src/cli.ts",
     "web": "deno task build && deno task serve"
   },
-  "nodeModulesDir": true,
+  "nodeModulesDir": "auto",
   "imports": {
     "@types/react": "npm:@types/react@^18.3.4",
     "@types/react-dom": "npm:@types/react-dom@^18.3.0",
