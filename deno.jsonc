@@ -28,7 +28,9 @@
     "dev": "deno run -A npm:vite",
     "build": "deno run -A npm:vite build",
     "preview": "deno run -A npm:vite preview",
-    "serve": "deno run --allow-net --allow-read --allow-sys https://deno.land/std/http/file_server.ts dist/"
+    "serve": "deno run --allow-net --allow-read --allow-sys https://deno.land/std/http/file_server.ts dist/",
+    "cli": "deno run src/cli.ts",
+    "web": "deno task build && deno task serve"
   },
   "nodeModulesDir": true,
   "imports": {
